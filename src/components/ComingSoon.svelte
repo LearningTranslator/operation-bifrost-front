@@ -31,7 +31,7 @@
 </script>
 
 <div
-  class="flex flex-col gap-4 h-screen justify-center items-center bg-stone-950"
+  class="flex flex-col gap-4 h-screen justify-center items-center text-center bg-stone-950"
 >
   <div class="text-5xl md:text-6xl lg:text-8xl text-slate-50">
     <NixieText text="Opening the Gate" />

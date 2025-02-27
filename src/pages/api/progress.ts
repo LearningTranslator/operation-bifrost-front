@@ -10,7 +10,6 @@ declare module '@crowdin/crowdin-api-client' {
 	}
 }
 
-const API_HOST = "https://api.crowdin.com/api/v2";
 const PROJECT_ID = 483903;
 
 export const GET: APIRoute = async ({ params, request }) => {
