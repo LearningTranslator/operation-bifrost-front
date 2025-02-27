@@ -8,7 +8,7 @@ const credentials: Credentials = {
 
 const {
 	translationStatusApi,
-} = new crowdin.default(credentials) as Client;
+} = new (crowdin as any).default(credentials) as Client; // why doesn't Crowdin update their SDK typings...
 
 export {
 	translationStatusApi
