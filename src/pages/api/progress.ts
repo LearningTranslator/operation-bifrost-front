@@ -27,6 +27,7 @@ export const GET: APIRoute = async ({ params, request }) => {
 	return new Response(
 		JSON.stringify({
 			total,
+			translated,
 			approved,
 			translateProgress,
 			approveProgress

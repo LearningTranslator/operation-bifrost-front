@@ -16,6 +16,7 @@
     "@astrojs/tailwind": "6.0.0",
     "@astrojs/vercel": "8.1.0",
     "@crowdin/crowdin-api-client": "^1.41.2",
+    "@fontsource/iosevka-etoile": "^5.1.0",
     "@tailwindcss/vite": "^4.0.9",
     "@types/canvas-confetti": "^1.6.3",
     "astro": "5.4.0",

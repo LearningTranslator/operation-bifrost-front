@@ -1,7 +1,34 @@
 <script lang="ts">
   export let text: string;
+  export let withTyping: boolean = false;
 </script>
 
-<h1 class="font-[bonx-frame] absolute opacity-40 frame">{text}</h1>
-<h1 class="font-[bonx-sihouette] absolute opacity-40 sihouette">{text}</h1>
-<h1 class="font-[bonx] title">{text}</h1>
+<div class="grid text-center">
+  <span
+    class="font-bonx-frame opacity-40 frame break-words whitespace-normal col-start-1 row-start-1"
+  >
+    {#if withTyping}
+      <span>{text}</span><span class="invisible">_</span>
+    {:else}
+      {text}
+    {/if}
+  </span>
+  <span
+    class="font-bonx-sihouette opacity-40 sihouette break-words whitespace-normal col-start-1 row-start-1"
+  >
+    {#if withTyping}
+      <span>{text}</span><span class="invisible">_</span>
+    {:else}
+      {text}
+    {/if}
+  </span>
+  <span
+    class="font-bonx title break-words whitespace-normal col-start-1 row-start-1"
+  >
+    {#if withTyping}
+      <span>{text}</span><span class="font-iosevka typing">_</span>
+    {:else}
+      {text}
+    {/if}
+  </span>
+</div>

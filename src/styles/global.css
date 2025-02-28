@@ -2,6 +2,10 @@
 
 @theme {
   --color-nixie-base: rgb(251, 192, 0);
+  --font-iosevka: "Iosevka Etoile", monospace;
+  --font-bonx: "bonx", monospace;
+  --font-bonx-frame: "bonx-frame", monospace;
+  --font-bonx-sihouette: "bonx-sihouette", monospace;
 }
 
 @layer base {
@@ -48,6 +52,10 @@
     @apply text-nixie-base border-nixie-base;
     animation: glow-all 3s ease-in-out infinite alternate;
   }
+
+  .typing {
+    animation: typing 400ms ease-in-out infinite alternate;
+  }
 }
 
 @layer utilities {
@@ -74,6 +82,15 @@
         0 0 15px rgb(255, 203, 30);
       border-color: rgb(255, 219, 101);
       filter: drop-shadow(0 0 30px rgb(255, 219, 101));
+    }
+  }
+
+  @keyframes typing {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
     }
   }
 }
