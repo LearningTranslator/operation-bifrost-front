@@ -1,1 +1,79 @@
 @import "tailwindcss";
+
+@theme {
+  --color-nixie-base: rgb(251, 192, 0);
+}
+
+@layer base {
+  @font-face {
+    font-family: "bonx";
+    src: url("/fonts/BONX-Medium.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "bonx-frame";
+    src: url("/fonts/BONX-Frame.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "bonx-sihouette";
+    src: url("/fonts/BONX-Silhouette.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+}
+
+@layer components {
+  .frame {
+    color: rgba(255, 0, 0, 0.4);
+  }
+
+  .sihouette {
+    color: rgba(220, 42, 27, 0.4);
+  }
+
+  .title {
+    @apply text-nixie-base;
+    animation: glow 3s ease-in-out infinite alternate;
+  }
+
+  .glow-all {
+    @apply text-nixie-base border-nixie-base;
+    animation: glow-all 3s ease-in-out infinite alternate;
+  }
+}
+
+@layer utilities {
+  @keyframes glow {
+    from {
+      text-shadow: 0 0 20px var(--color-nixie-base),
+        0 0 50px var(--color-nixie-base), 0 0 5px rgb(255, 212, 71);
+    }
+    to {
+      text-shadow: 0 0 30px rgb(255, 219, 101), 0 0 60px rgb(255, 219, 101),
+        0 0 15px rgb(255, 203, 30);
+    }
+  }
+
+  @keyframes glow-all {
+    from {
+      text-shadow: 0 0 20px var(--color-nixie-base),
+        0 0 50px var(--color-nixie-base), 0 0 5px rgb(255, 212, 71);
+      border-color: var(--color-nixie-base);
+      filter: drop-shadow(0 0 20px var(--color-nixie-base));
+    }
+    to {
+      text-shadow: 0 0 30px rgb(255, 219, 101), 0 0 60px rgb(255, 219, 101),
+        0 0 15px rgb(255, 203, 30);
+      border-color: rgb(255, 219, 101);
+      filter: drop-shadow(0 0 30px rgb(255, 219, 101));
+    }
+  }
+}
