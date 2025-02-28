@@ -31,7 +31,7 @@
     }
 
     if (approveProgress === 1) {
-      approveProgress = 0.999999;
+      approveProgress = 1.048596; // Steins;Gate World Line
     }
 
     animateMeter();
@@ -46,7 +46,7 @@
     revealedDigits: number
   ): string {
     const finalStr = finalNumber.toFixed(6);
-    let result = "0.";
+    let result = finalNumber > 1 ? "1." : "0.";
 
     // Start from first decimal digit (position 2 in string)
     for (let i = 2; i < 8; i++) {
