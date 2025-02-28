@@ -19,6 +19,7 @@
     "@fontsource/iosevka-etoile": "^5.1.0",
     "@tailwindcss/vite": "^4.0.9",
     "@types/canvas-confetti": "^1.6.3",
+    "@vercel/analytics": "^1.5.0",
     "astro": "5.4.0",
     "autoprefixer": "^10.4.15",
     "canvas-confetti": "^1.9.1",
