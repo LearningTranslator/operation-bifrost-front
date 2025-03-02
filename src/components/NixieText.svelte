@@ -3,7 +3,7 @@
   export let withTyping: boolean = false;
 </script>
 
-<div class="grid text-center">
+<div class="grid text-center select-none cursor-default">
   <span
     class="font-bonx-frame opacity-40 frame break-words whitespace-normal col-start-1 row-start-1"
   >
