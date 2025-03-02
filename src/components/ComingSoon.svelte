@@ -103,8 +103,12 @@
   }
 </script>
 
-<main
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<div
   class="flex flex-col gap-4 h-dvh justify-center items-center text-center bg-stone-950 p-4"
+  onclick={startAnimation}
+  role="button"
+  tabindex="0"
 >
   <div class="flex items-center text-5xl md:text-6xl lg:text-8xl text-slate-50">
     <NixieText text={meter} />
@@ -112,7 +116,7 @@
   <div class="text-4xl">
     <NixieText text="Opening the Gate" withTyping />
   </div>
-</main>
+</div>
 
 <footer
   class="flex gap-1 text-3xl border justify-center items-center z-50 fixed bottom-5 py-2 px-4 left-1/2 transform -translate-x-1/2 rounded-4xl glow-all"
