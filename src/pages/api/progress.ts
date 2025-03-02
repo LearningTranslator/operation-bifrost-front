@@ -21,8 +21,11 @@ export const GET: APIRoute = async ({ params, request }) => {
 	const { total, translated, approved } = data.words
 
 	// calculate percentage
-	const translateProgress = (translated / total) * 100
-	const approveProgress = (approved / total) * 100
+	let translateProgress = (translated / total) * 100
+	let approveProgress = (approved / total) * 100
+
+	translateProgress = parseFloat(translateProgress.toFixed(4))
+	approveProgress = parseFloat(approveProgress.toFixed(4))
 
 	return new Response(
 		JSON.stringify({
