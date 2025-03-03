@@ -9,10 +9,24 @@
   let meter = "0.000000%";
   let animationInterval: number;
   let periodicInterval: number;
+  let randomPhrase = "";
 
   const ANIMATION_DURATION = 4000; // duration in milliseconds
   const CACHE_DURATION = 60 * 60 * 1000; // 1 hour in milliseconds
   const REPLAY_INTERVAL = 10 * 60 * 1000; // 10 minutes
+
+  const phrases = [
+    "Opening the Gate",
+    "Hacking to the Gate",
+    "Calculating World Lines",
+    "Synchronizing Timeline",
+    "Gathering Divergence Data",
+    "Processing Future Data",
+  ];
+
+  function getRandomPhrase() {
+    return phrases[Math.floor(Math.random() * phrases.length)];
+  }
 
   async function fetchData() {
     const cachedData = localStorage.getItem("progressData");
@@ -42,6 +56,8 @@
   async function startAnimation() {
     // Fetch new data before starting animation
     await fetchData();
+    randomPhrase =
+      approveProgress === 1.048596 ? "Reached Steins;Gate" : getRandomPhrase();
 
     // Clear any existing animation
     if (animationInterval) {
@@ -113,8 +129,8 @@
   <div class="flex items-center text-5xl md:text-6xl lg:text-8xl text-slate-50">
     <NixieText text={meter} />
   </div>
-  <div class="text-4xl">
-    <NixieText text="Opening the Gate" withTyping />
+  <div class={`text-4xl ${randomPhrase ? "" : "invisible"}`}>
+    <NixieText text={randomPhrase} withTyping />
   </div>
 </div>
 
