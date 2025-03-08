@@ -1,6 +1,10 @@
 <script lang="ts">
-  export let text: string;
-  export let withTyping: boolean = false;
+  interface Props {
+    text: string;
+    withTyping?: boolean;
+  }
+
+  let { text, withTyping = false }: Props = $props();
 </script>
 
 <div class="grid text-center select-none cursor-default">

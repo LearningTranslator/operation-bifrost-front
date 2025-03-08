@@ -6,10 +6,10 @@
   import IconLink from "./IconLink.svelte";
 
   let approveProgress: number;
-  let meter = "0.000000%";
+  let meter = $state("0.000000%");
   let animationInterval: number;
   let periodicInterval: number;
-  let randomPhrase = "";
+  let randomPhrase = $state("");
 
   const ANIMATION_DURATION = 4000; // duration in milliseconds
   const CACHE_DURATION = 60 * 60 * 1000; // 1 hour in milliseconds

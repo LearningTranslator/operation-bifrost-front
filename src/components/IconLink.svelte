@@ -1,10 +1,14 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
 
-  export let icon: string;
-  export let link: string;
+  interface Props {
+    icon: string;
+    link: string;
+  }
 
-  let isLoaded = false;
+  let { icon, link }: Props = $props();
+
+  let isLoaded = $state(false);
 
   function handleLoad() {
     isLoaded = true;
