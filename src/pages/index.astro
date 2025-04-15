@@ -2,9 +2,6 @@
 import ComingSoon from "../components/ComingSoon.svelte";
 import "@fontsource/iosevka-etoile";
 import "../styles/global.css";
-
-import Analytics from "@vercel/analytics/astro";
-import SpeedInsights from "@vercel/speed-insights/astro";
 ---
 
 <html lang="th">
@@ -64,7 +61,5 @@ import SpeedInsights from "@vercel/speed-insights/astro";
 
   <body>
     <ComingSoon client:load />
-    <Analytics />
-    <SpeedInsights />
   </body>
 </html>
