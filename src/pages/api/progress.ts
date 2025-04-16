@@ -19,27 +19,32 @@ declare module "@crowdin/crowdin-api-client" {
 const PROJECT_ID = 483903;
 
 export const GET: APIRoute = async () => {
-  const response = await translationStatusApi.getProjectProgress(PROJECT_ID, {
-    languageIds: "th",
-  });
-  const data = response.data[0].data;
+  try {
+    const response = await translationStatusApi.getProjectProgress(PROJECT_ID, {
+      languageIds: "th",
+    });
+    const data = response.data[0].data;
 
-  const { total, translated, approved } = data.words;
+    const { total, translated, approved } = data.words;
 
-  // calculate percentage
-  let translateProgress = (translated / total) * 100;
-  let approveProgress = (approved / total) * 100;
+    // calculate percentage
+    let translateProgress = (translated / total) * 100;
+    let approveProgress = (approved / total) * 100;
 
-  translateProgress = parseFloat(translateProgress.toFixed(4));
-  approveProgress = parseFloat(approveProgress.toFixed(4));
+    translateProgress = parseFloat(translateProgress.toFixed(4));
+    approveProgress = parseFloat(approveProgress.toFixed(4));
 
-  return new Response(
-    JSON.stringify({
-      total,
-      translated,
-      approved,
-      translateProgress,
-      approveProgress,
-    })
-  );
+    return new Response(
+      JSON.stringify({
+        total,
+        translated,
+        approved,
+        translateProgress,
+        approveProgress,
+      })
+    );
+  } catch (error) {
+    console.error(error);
+    return new Response(JSON.stringify({ error }));
+  }
 };

@@ -1,8 +1,10 @@
 import crowdin, { type Credentials } from "@crowdin/crowdin-api-client";
 
+const TOKEN = import.meta.env.CROWDIN_API_TOKEN;
+
 // credentials
 const credentials: Credentials = {
-  token: import.meta.env.CROWDIN_API_TOKEN,
+  token: TOKEN,
 };
 
 const { translationStatusApi } = new crowdin(credentials);
