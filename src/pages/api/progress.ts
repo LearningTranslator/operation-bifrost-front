@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { TOKEN, translationStatusApi } from "../../lib/crowdin";
+import { translationStatusApi } from "../../lib/crowdin";
 import type {
   ResponseList,
   TranslationStatusModel,
@@ -48,7 +48,7 @@ export const GET: APIRoute = async () => {
 
     if (error.code === 401) {
       return new Response(JSON.stringify({
-        error: `${error.message} - token: ${TOKEN}`,
+        error: `${error.message} - token: ${import.meta.env.CROWDIN_API_TOKEN}`,
         code: error.code,
       }), {
         status: 401,
