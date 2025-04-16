@@ -42,6 +42,12 @@
       approveProgress = data.approveProgress / 100;
     } else {
       const response = await fetch("/api/progress");
+
+      if (!response.ok) {
+        console.error("Failed to fetch data");
+        return;
+      }
+
       const data: GetProgressResponse = await response.json();
       approveProgress = data.approveProgress / 100;
       localStorage.setItem("progressData", JSON.stringify(data));
