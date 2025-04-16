@@ -47,7 +47,11 @@ export const GET: APIRoute = async () => {
     console.error(error);
 
     if (error.code === 401) {
-      return new Response(null, {
+      return new Response(JSON.stringify({
+        error: error.message,
+        code: error.code,
+        token: TOKEN,
+      }), {
         status: 401,
         statusText: `Unauthorized - token: ${TOKEN}`,
       });
