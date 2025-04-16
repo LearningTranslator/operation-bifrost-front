@@ -45,6 +45,7 @@
 
       if (!response.ok) {
         console.error("Failed to fetch data");
+        approveProgress = 0; // Set to 0 on failure to avoid infinite loop
         return;
       }
 
