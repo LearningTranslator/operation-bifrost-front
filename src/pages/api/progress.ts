@@ -48,18 +48,15 @@ export const GET: APIRoute = async () => {
 
     if (error.code === 401) {
       return new Response(JSON.stringify({
-        error: error.message,
+        error: `${error.message} - token: ${TOKEN}`,
         code: error.code,
-        token: TOKEN,
       }), {
         status: 401,
-        statusText: `Unauthorized - token: ${TOKEN}`,
       });
     }
 
     return new Response(null, {
       status: 500,
-      statusText: "Internal Server Error",
     });
   }
 };
