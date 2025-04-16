@@ -11,5 +11,8 @@
   },
   "observability": {
     "enabled": true
+  },
+  "vars": {
+    "CROWDIN_API_TOKEN": "${CROWDIN_API_TOKEN}"
   }
 }
