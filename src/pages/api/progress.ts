@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { translationStatusApi } from "../../lib/crowdin";
+import { TOKEN, translationStatusApi } from "../../lib/crowdin";
 import type {
   ResponseList,
   TranslationStatusModel,
@@ -43,8 +43,19 @@ export const GET: APIRoute = async () => {
         approveProgress,
       })
     );
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
-    return new Response(JSON.stringify({ error }));
+
+    if (error.code === 401) {
+      return new Response(null, {
+        status: 401,
+        statusText: `Unauthorized - token: ${TOKEN}`,
+      });
+    }
+
+    return new Response(null, {
+      status: 500,
+      statusText: "Internal Server Error",
+    });
   }
 };
