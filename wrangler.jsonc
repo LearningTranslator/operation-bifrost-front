@@ -3,7 +3,7 @@
   "name": "operationbifrost",
   "main": "./dist/_worker.js/index.js",
   // Update to today's date
-  "compatibility_date": "2025-04-15",
+  "compatibility_date": "2025-04-16",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "binding": "ASSETS",
@@ -11,8 +11,5 @@
   },
   "observability": {
     "enabled": true
-  },
-  "vars": {
-    "CROWDIN_API_TOKEN": "${CROWDIN_API_TOKEN}"
   }
 }
