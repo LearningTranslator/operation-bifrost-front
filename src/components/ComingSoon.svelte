@@ -5,7 +5,8 @@
   import NixieText from "./NixieText.svelte";
   import IconLink from "./IconLink.svelte";
 
-  let approveProgress: number;
+  let overallProgress: number;
+
   let meter = $state("0.000000%");
   let animationInterval: number;
   let periodicInterval: number;
@@ -39,24 +40,26 @@
       now - parseInt(cachedTime) < CACHE_DURATION
     ) {
       const data: GetProgressResponse = JSON.parse(cachedData);
-      approveProgress = data.approveProgress / 100;
+      overallProgress =
+        (data.translateProgress + data.approveProgress) / 2 / 100;
     } else {
       const response = await fetch("/api/progress");
 
       if (!response.ok) {
         console.error("Failed to fetch data");
-        approveProgress = 0; // Set to 0 on failure to avoid infinite loop
+        overallProgress = 0; // Set to 0 on failure to avoid infinite loop
         return;
       }
 
       const data: GetProgressResponse = await response.json();
-      approveProgress = data.approveProgress / 100;
+      overallProgress =
+        (data.translateProgress + data.approveProgress) / 2 / 100;
       localStorage.setItem("progressData", JSON.stringify(data));
       localStorage.setItem("progressTime", now.toString());
     }
 
-    if (approveProgress === 1) {
-      approveProgress = 1.048596; // Steins;Gate World Line
+    if (overallProgress === 1) {
+      overallProgress = 1.048596; // Steins;Gate World Line
     }
   }
 
@@ -64,7 +67,7 @@
     // Fetch new data before starting animation
     await fetchData();
     randomPhrase =
-      approveProgress === 1.048596 ? "Reached Steins;Gate" : getRandomPhrase();
+      overallProgress === 1.048596 ? "Reached Steins;Gate" : getRandomPhrase();
 
     // Clear any existing animation
     if (animationInterval) {
@@ -80,9 +83,9 @@
       const revealedDigits = Math.floor(elapsedTime / timePerDigit);
 
       if (revealedDigits < totalDigits) {
-        meter = buildMeterDisplay(approveProgress, revealedDigits);
+        meter = buildMeterDisplay(overallProgress, revealedDigits);
       } else {
-        meter = approveProgress.toFixed(6) + "%";
+        meter = overallProgress.toFixed(6) + "%";
         clearInterval(animationInterval);
       }
     }, 50);

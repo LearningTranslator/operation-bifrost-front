@@ -46,14 +46,14 @@ export const GET: APIRoute = async () => {
   } catch (error: any) {
     console.error(error);
 
-    if (error.code === 401) {
-      return new Response(JSON.stringify({
-        error: `${error.message} - token: ${import.meta.env.CROWDIN_API_TOKEN}`,
-        code: error.code,
-      }), {
-        status: 401,
-      });
-    }
+    // if (error.code === 401) {
+    //   return new Response(JSON.stringify({
+    //     error: `${error.message} - token: ${import.meta.env.CROWDIN_API_TOKEN}`,
+    //     code: error.code,
+    //   }), {
+    //     status: 401,
+    //   });
+    // }
 
     return new Response(null, {
       status: 500,

@@ -7,6 +7,7 @@ const credentials: Credentials = {
   token: TOKEN,
 };
 
-const { translationStatusApi } = new crowdin(credentials);
+// const { translationStatusApi } = new crowdin(credentials);
+const { translationStatusApi } = new (crowdin as any).default(credentials);
 
 export { translationStatusApi };
