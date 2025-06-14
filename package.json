@@ -17,6 +17,7 @@
     "@astrojs/mdx": "4.2.4",
     "@astrojs/svelte": "7.0.10",
     "@crowdin/crowdin-api-client": "^1.41.2",
+    "@fontsource/ibm-plex-sans-thai": "^5.2.6",
     "@fontsource/iosevka-etoile": "^5.1.0",
     "@tailwindcss/vite": "^4.1.4",
     "@types/canvas-confetti": "^1.6.3",

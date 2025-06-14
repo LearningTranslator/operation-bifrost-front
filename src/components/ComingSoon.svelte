@@ -1,11 +1,14 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import Icon from "@iconify/svelte";
   import { type GetProgressResponse } from "../type";
 
   import NixieText from "./NixieText.svelte";
   import IconLink from "./IconLink.svelte";
 
   let overallProgress: number;
+  let translateProgress = $state(0);
+  let approveProgress = $state(0);
 
   let meter = $state("0.000000%");
   let animationInterval: number;
@@ -40,6 +43,8 @@
       now - parseInt(cachedTime) < CACHE_DURATION
     ) {
       const data: GetProgressResponse = JSON.parse(cachedData);
+      translateProgress = data.translateProgress;
+      approveProgress = data.approveProgress;
       overallProgress =
         (data.translateProgress + data.approveProgress) / 2 / 100;
     } else {
@@ -52,6 +57,8 @@
       }
 
       const data: GetProgressResponse = await response.json();
+      translateProgress = data.translateProgress;
+      approveProgress = data.approveProgress;
       overallProgress =
         (data.translateProgress + data.approveProgress) / 2 / 100;
       localStorage.setItem("progressData", JSON.stringify(data));
@@ -136,8 +143,30 @@
   role="button"
   tabindex="0"
 >
-  <div class="flex items-center text-5xl md:text-6xl lg:text-8xl text-slate-50">
-    <NixieText text={meter} />
+  <div class="relative">
+    <div
+      class="flex items-center text-5xl md:text-6xl lg:text-8xl text-slate-50"
+    >
+      <NixieText text={meter} />
+    </div>
+    <div class="absolute top-0 right-0 group">
+      <Icon
+        icon="lucide:info"
+        class="h-5 glow-all translate-x-4 cursor-pointer"
+      />
+      <div
+        class="absolute opacity-0 -translate-y-3/4 font-ibm group-hover:opacity-100 group-hover:-translate-y-full transition duration-300 bg-stone-800 border border-stone-600 rounded-lg p-3 min-w-[170px] text-left text-sm z-10 -translate-x-full md:translate-x-10 pointer-events-none"
+      >
+        <div class="mb-2 flex justify-between">
+          <span class="text-stone-400">แปลแล้ว:</span>
+          <span class="text-stone-200">{translateProgress}%</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-stone-400">ตรวจแล้ว:</span>
+          <span class="text-stone-200">{approveProgress}%</span>
+        </div>
+      </div>
+    </div>
   </div>
   <div class={`text-4xl ${randomPhrase ? "" : "invisible"}`}>
     <NixieText text={randomPhrase} withTyping />

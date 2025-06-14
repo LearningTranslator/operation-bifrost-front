@@ -6,6 +6,7 @@
   --font-bonx: "bonx", monospace;
   --font-bonx-frame: "bonx-frame", monospace;
   --font-bonx-sihouette: "bonx-sihouette", monospace;
+  --font-ibm: "IBM Plex Sans Thai", sans-serif;
 }
 
 @layer base {
