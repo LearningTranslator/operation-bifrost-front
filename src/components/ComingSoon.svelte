@@ -14,6 +14,8 @@
   let animationInterval: number;
   let periodicInterval: number;
   let randomPhrase = $state("");
+  let showTooltip = $state(false);
+  let tooltipLocked = false;
 
   const ANIMATION_DURATION = 4000; // duration in milliseconds
   const CACHE_DURATION = 60 * 60 * 1000; // 1 hour in milliseconds
@@ -134,6 +136,27 @@
 
     return result + "%";
   }
+
+  function toggleTooltip(e: Event) {
+    e.stopPropagation();
+    tooltipLocked = !tooltipLocked;
+    showTooltip = tooltipLocked;
+  }
+
+  function showTooltipHover(e: PointerEvent) {
+    // Only show on hover if not locked and pointer is a mouse
+    if (!tooltipLocked && e.pointerType === "mouse") showTooltip = true;
+  }
+
+  function hideTooltipHover(e: PointerEvent) {
+    // Only hide on hover out if not locked and pointer is a mouse
+    if (!tooltipLocked && e.pointerType === "mouse") showTooltip = false;
+  }
+
+  function hideTooltip() {
+    tooltipLocked = false;
+    showTooltip = false;
+  }
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
@@ -149,13 +172,29 @@
     >
       <NixieText text={meter} />
     </div>
-    <div class="absolute top-0 right-0 group">
+    <div
+      class="absolute top-0 right-0 group"
+      tabindex="0"
+      onpointerenter={showTooltipHover}
+      onpointerleave={hideTooltipHover}
+      onclick={(e) => {
+        e.stopPropagation();
+        toggleTooltip(e);
+      }}
+      onblur={hideTooltip}
+    >
       <Icon
         icon="lucide:info"
         class="h-5 glow-all translate-x-4 cursor-pointer"
+        aria-label="Show progress info"
       />
       <div
-        class="absolute opacity-0 -translate-y-3/4 font-ibm group-hover:opacity-100 group-hover:-translate-y-full transition duration-300 bg-stone-800 border border-stone-600 rounded-lg p-3 min-w-[170px] text-left text-sm z-10 -translate-x-full md:translate-x-10 pointer-events-none"
+        class="absolute -translate-y-3/4 font-ibm transition duration-300 bg-stone-800 border border-stone-600 rounded-lg p-3 min-w-[170px] text-left text-sm z-10 -translate-x-full md:translate-x-10"
+        class:opacity-0={!showTooltip}
+        class:pointer-events-none={!showTooltip}
+        class:opacity-100={showTooltip}
+        class:pointer-events-auto={showTooltip}
+        onclick={(e) => e.stopPropagation()}
       >
         <div class="mb-2 flex justify-between">
           <span class="text-stone-400">แปลแล้ว:</span>
